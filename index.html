@@ -6,516 +6,56 @@
   <title>وحید طاهری | طراح سایت</title>
   <!-- Font Awesome (برای آیکون‌ها) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(145deg, #0b0e18 0%, #1a1f2f 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      color: #eef2ff;
-    }
-
-    .card {
-      max-width: 1000px;
-      width: 100%;
-      background: rgba(22, 28, 46, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 48px;
-      padding: 40px 35px;
-      box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-
-    /* هدر با نام و تگلاین */
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 30px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 25px;
-    }
-
-    .name-title h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #f0f4ff, #b6c8ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.1;
-    }
-
-    .name-title .badge {
-      display: inline-block;
-      margin-top: 8px;
-      background: rgba(99, 140, 255, 0.18);
-      padding: 8px 22px;
-      border-radius: 60px;
-      font-size: 1.1rem;
-      font-weight: 400;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(4px);
-      color: #c8d6ff;
-    }
-
-    .avatar-icon {
-      font-size: 4.5rem;
-      color: #a0b9ff;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 10px 20px;
-      border-radius: 100px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
-    }
-
-    /* شبکه اصلی: معرفی + مهارت‌ها */
-    .grid-main {
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 35px;
-      margin: 30px 0 25px;
-    }
-
-    .bio {
-      background: rgba(12, 17, 29, 0.5);
-      border-radius: 32px;
-      padding: 28px 25px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(4px);
-      transition: 0.2s;
-    }
-
-    .bio h2 {
-      font-size: 1.7rem;
-      font-weight: 500;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #d6e2ff;
-    }
-
-    .bio h2 i {
-      color: #6d8eff;
-      font-size: 1.8rem;
-    }
-
-    .bio p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #ccd7f5;
-      margin-bottom: 20px;
-      font-weight: 300;
-    }
-
-    .highlight-tag {
-      display: inline-block;
-      background: rgba(80, 130, 255, 0.15);
-      padding: 8px 20px;
-      border-radius: 40px;
-      font-size: 0.95rem;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      margin-top: 6px;
-    }
-
-    .skills {
-      background: rgba(12, 17, 29, 0.5);
-      border-radius: 32px;
-      padding: 28px 25px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(4px);
-    }
-
-    .skills h2 {
-      font-size: 1.7rem;
-      font-weight: 500;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #d6e2ff;
-    }
-
-    .skills h2 i {
-      color: #6d8eff;
-      font-size: 1.8rem;
-    }
-
-    .skill-item {
-      margin-bottom: 22px;
-    }
-
-    .skill-item span {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1rem;
-      letter-spacing: 0.3px;
-      margin-bottom: 5px;
-      color: #d3defa;
-    }
-
-    .skill-bar-bg {
-      width: 100%;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.3);
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #4f7cff, #9ab0ff);
-      border-radius: 12px;
-      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: 0 0 12px #4f7cff66;
-    }
-
-    /* کارت اطلاعات تماس & شبکه‌های اجتماعی */
-    .contact-social {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 60px;
-      padding: 15px 25px;
-      margin-top: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(4px);
-    }
-
-    .contact-info {
-      display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    .contact-info a {
-      color: #bcc9f0;
-      text-decoration: none;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.2s;
-      padding: 6px 12px;
-      border-radius: 40px;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .contact-info a i {
-      font-size: 1.4rem;
-      color: #7b99ff;
-    }
-
-    .contact-info a:hover {
-      color: white;
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-2px);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 18px;
-    }
-
-    .social-links a {
-      color: #b0c2eb;
-      font-size: 1.8rem;
-      transition: 0.25s ease;
-      display: inline-block;
-    }
-
-    .social-links a:hover {
-      color: #b6cbff;
-      transform: scale(1.15) translateY(-3px);
-      text-shadow: 0 0 15px #4f7cff;
-    }
-
-    /* دکمه CTA */
-    .cta-btn {
-      display: inline-block;
-      margin-top: 22px;
-      background: linear-gradient(145deg, #3e64e0, #2846a0);
-      padding: 14px 38px;
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 1.1rem;
-      border: none;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 10px 20px -8px #1a2b70;
-      transition: 0.25s;
-      letter-spacing: 0.5px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .cta-btn i {
-      margin-left: 12px;
-    }
-
-    .cta-btn:hover {
-      transform: scale(1.02) translateY(-3px);
-      box-shadow: 0 18px 30px -10px #1e3b9e;
-      background: linear-gradient(145deg, #5376ff, #2a4ab0);
-    }
-
-    /* فوتر کوچک */
-    .footer-note {
-      text-align: center;
-      margin-top: 35px;
-      font-size: 0.85rem;
-      color: #7b8bb8;
-      letter-spacing: 0.4px;
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      padding-top: 20px;
-    }
-
-    .footer-note i {
-      color: #5e7edf;
-      margin: 0 5px;
-    }
-
-    /* ریسپانسیو */
-    @media (max-width: 760px) {
-      .card { padding: 30px 20px; }
-      .grid-main { grid-template-columns: 1fr; gap: 25px; }
-      .header { flex-direction: column; align-items: start; gap: 15px; }
-      .name-title h1 { font-size: 2.6rem; }
-      .avatar-icon { font-size: 3.5rem; align-self: flex-start; }
-      .contact-social { flex-direction: column; align-items: stretch; gap: 18px; border-radius: 40px; }
-      .contact-info { justify-content: center; }
-      .social-links { justify-content: center; }
-      .cta-btn { width: 100%; text-align: center; }
-    }
-
-    @media (max-width: 480px) {
-      .name-title h1 { font-size: 2.2rem; }
-      .bio p { font-size: 1rem; }
-    }
-
-    /* انیمیشن ورود ملایم */
-    .card {
-      animation: fadeUp 0.9s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-
-<div class="card">
-  <!-- هدر با نام و آواتار -->
-  <div class="header">
-    <div class="name-title">
-      <h1>وحید طاهری</h1>
-      <span class="badge"><i class="fas fa-code" style="margin-left: 10px;"></i> طراح سایت · توسعه‌دهنده front-end</span>
-    </div>
-    <div class="avatar-icon">
-      <i class="fas fa-user-astronaut"></i>
-    </div>
-  </div>
-
-  <!-- بخش اصلی: درباره + مهارت‌ها -->
-  <div class="grid-main">
-    <!-- معرفی -->
-    <div class="bio">
-      <h2><i class="fas fa-pen-fancy"></i> درباره من</h2>
-      <p>
-        سلام! من وحید طاهری هستم، طراح سایت با بیش از ۶ سال تجربه در خلق تجربه‌های دیجیتال 
-        مینیمال و کاربرپسند. عاشق ترکیب زیبایی‌شناسی با کدنویسی تمیز و کارآمد هستم.
-      </p>
-      <p>
-        <i class="fas fa-check-circle" style="color: #5f82ff; margin-left: 8px;"></i>
-        طراحی ریسپانسیو · 
-        <i class="fas fa-check-circle" style="color: #5f82ff; margin-left: 8px;"></i>
-        بهینه‌سازی عملکرد · 
-        <i class="fas fa-check-circle" style="color: #5f82ff; margin-left: 8px;"></i>
-        رابط‌های مدرن
-      </p>
-      <span class="highlight-tag"><i class="far fa-smile" style="margin-left: 8px;"></i> همیشه در حال یادگیری</span>
-    </div>
-
-    <!-- مهارت‌ها (با نوار متحرک) -->
-    <div class="skills">
-      <h2><i class="fas fa-laptop-code"></i> تخصص‌ها</h2>
-
-      <div class="skill-item">
-        <span>HTML &amp; CSS <span>۹۰٪</span></span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
-      </div>
-      <div class="skill-item">
-        <span>جاوااسکریپت <span>۷۵٪</span></span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="75"></div></div>
-      </div>
-      <div class="skill-item">
-        <span>React / Next <span>۶۵٪</span></span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="65"></div></div>
-      </div>
-      <div class="skill-item">
-        <span>UI/UX Design <span>۸۰٪</span></span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- دکمه اقدام (CTA) + تماس و شبکه‌های اجتماعی -->
-  <div style="display: flex; justify-content: flex-start; margin: 10px 0 10px;">
-    <button class="cta-btn" id="greetBtn"><i class="fas fa-hand-peace"></i> گفت‌وگو کنید</button>
-  </div>
-
-  <div class="contact-social">
-    <div class="contact-info">
-      <a href="mailto:vahid.taheri@example.com"><i class="fas fa-envelope"></i> vahid.taheri@example.com</a>
-      <a href="#"><i class="fas fa-phone-alt"></i> ۰۹۱۲-۳۴۵-۶۷۸۹</a>
-    </div>
-    <div class="social-links">
-      <a href="#" aria-label="لینکدین"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" aria-label="گیت‌هاب"><i class="fab fa-github"></i></a>
-      <a href="#" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="توییتر"><i class="fab fa-x-twitter"></i></a>
-    </div>
-  </div>
-
-  <div class="footer-note">
-    <i class="fas fa-crown"></i> طراحی شده با عشق · وحید طاهری <i class="fas fa-heart" style="color: #ff7b9c;"></i>
-  </div>
-</div>
-
 <script>
-  (function() {
-    // ===== ۱. متحرک‌سازی نوارهای مهارت هنگام ورود =====
-    const skillFills = document.querySelectorAll('.skill-bar-fill');
-
-    function animateBars() {
-      skillFills.forEach(bar => {
-        const width = bar.getAttribute('data-width');
-        if (width) {
-          bar.style.width = width + '%';
+  async function fetchAndDisplayJSON(url) {
+    try {
+        // دریافت داده از URL
+        const response = await fetch(url);
+        
+        // بررسی موفقیت آمیز بودن درخواست
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-      });
+        
+        // تبدیل به JSON
+        const data = await response.json();
+        
+        // نمایش به صورت فرمت شده
+        console.log('داده‌های JSON:', data);
+        
+        // نمایش به صورت رشته JSON با فرمت زیبا
+        const jsonString = JSON.stringify(data, null, 2);
+        console.log('JSON فرمت شده:');
+        console.log(jsonString);
+        
+        // اگر در مرورگر هستی، می‌تونی در صفحه نمایش بدی
+        displayInPage(jsonString);
+        
+        return data;
+        
+    } catch (error) {
+        console.error('خطا در دریافت JSON:', error);
+        document.getElementById('output').innerHTML = 
+            `<div style="color: red;">خطا: ${error.message}</div>`;
     }
+}
 
-    // اجرا با تاخیر کم برای اطمینان از رندر
-    setTimeout(animateBars, 400);
-
-    // ===== ۲. دکمه «گفت‌وگو کنید» با پیام خوش‌آمد =====
-    const greetBtn = document.getElementById('greetBtn');
-    if (greetBtn) {
-      greetBtn.addEventListener('click', function() {
-        // یک پیام دوستانه با افکت ملایم
-        const existingMsg = document.querySelector('.custom-toast-message');
-        if (existingMsg) existingMsg.remove();
-
-        const toast = document.createElement('div');
-        toast.className = 'custom-toast-message';
-        toast.innerHTML = `
-          <i class="fas fa-comment-dots" style="margin-left: 12px; color: #8aabff;"></i>
-          درود! من وحید هستم، خوشحال می‌شم با شما همکاری کنم.
+// تابع برای نمایش در صفحه
+function displayInPage(jsonString) {
+    const outputDiv = document.getElementById('output');
+    if (outputDiv) {
+        outputDiv.innerHTML = `
+            <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; 
+                         overflow: auto; max-height: 500px;">
+                ${jsonString}
+            </pre>
         `;
-        Object.assign(toast.style, {
-          position: 'fixed',
-          bottom: '30px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'rgba(18, 26, 48, 0.95)',
-          backdropFilter: 'blur(10px)',
-          padding: '18px 32px',
-          borderRadius: '60px',
-          color: '#eef5ff',
-          fontSize: '1.1rem',
-          border: '1px solid rgba(255,255,255,0.08)',
-          boxShadow: '0 20px 40px -10px #0a0f1e',
-          zIndex: '999',
-          fontWeight: '400',
-          letterSpacing: '0.3px',
-          direction: 'rtl',
-          fontFamily: 'Segoe UI, Tahoma, sans-serif',
-          transition: 'opacity 0.4s ease, transform 0.3s ease',
-          opacity: '0',
-          transform: 'translateX(-50%) translateY(20px)'
-        });
-        document.body.appendChild(toast);
-
-        // نمایش با انیمیشن
-        requestAnimationFrame(() => {
-          toast.style.opacity = '1';
-          toast.style.transform = 'translateX(-50%) translateY(0)';
-        });
-
-        // حذف خودکار بعد از ۴ ثانیه
-        setTimeout(() => {
-          toast.style.opacity = '0';
-          toast.style.transform = 'translateX(-50%) translateY(20px)';
-          setTimeout(() => toast.remove(), 500);
-        }, 4200);
-      });
     }
+}
 
-    // ===== ۳. (اختیاری) کلیک روی آیکون شبکه‌های اجتماعی =====
-    const socialLinks = document.querySelectorAll('.social-links a');
-    socialLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        // فقط یک هشدار ساده برای نمایش تعامل
-        const network = this.querySelector('i')?.className || 'شبکه اجتماعی';
-        alert(`🌐 در حال باز کردن ${network} ... (دمو)`);
-      });
-    });
-
-    // ===== ۴. لینک‌های تماس (دمو) =====
-    const contactItems = document.querySelectorAll('.contact-info a');
-    contactItems.forEach(item => {
-      item.addEventListener('click', function(e) {
-        if (this.getAttribute('href') === '#') {
-          e.preventDefault();
-          alert('📬 اطلاعات تماس: vahid.taheri@example.com · ۰۹۱۲-۳۴۵-۶۷۸۹');
-        }
-        // اگر href ایمیل باشد، اجازه می‌دهیم به صورت عادی باز شود.
-      });
-    });
-
-    // ===== ۵. تغییر جزئی پس‌زمینه کارت با حرکت موس (جلوه لوکس) =====
-    const card = document.querySelector('.card');
-    if (card) {
-      card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 25;
-        const rotateY = (centerX - x) / 25;
-        this.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        this.style.transition = 'transform 0.08s ease-out';
-      });
-
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
-        this.style.transition = 'transform 0.5s ease';
-      });
-    }
-
-  })();
+// استفاده از تابع
+const jsonUrl = 'https://raw.githubusercontent.com/seyedvahidtaheri/vahidtaheri.github.io/refs/heads/main/classes.json';
+fetchAndDisplayJSON(jsonUrl);
 </script>
 
 </body>
