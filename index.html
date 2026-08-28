@@ -1,64 +1,62 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>وحید طاهری | طراح سایت</title>
-  <!-- Font Awesome (برای آیکون‌ها) -->
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-  <body>
-  </body>
-<script>
-  async function fetchAndDisplayJSON(url) {
+// تابع برای دریافت و نمایش JSON با ساختار شما
+async function fetchAndDisplayMyJSON(url) {
     try {
-        // دریافت داده از URL
+        // دریافت داده
         const response = await fetch(url);
         
-        // بررسی موفقیت آمیز بودن درخواست
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        // تبدیل به JSON
         const data = await response.json();
         
-        // نمایش به صورت فرمت شده
-        console.log('داده‌های JSON:', data);
+        // نمایش در کنسول
+        console.log('داده‌های دریافتی:', data);
+        console.log('JSON فرمت شده:', JSON.stringify(data, null, 2));
         
-        // نمایش به صورت رشته JSON با فرمت زیبا
-        const jsonString = JSON.stringify(data, null, 2);
-        console.log('JSON فرمت شده:');
-        console.log(jsonString);
+        // نمایش به صورت جدول در صفحه
+        const outputDiv = document.getElementById('output');
         
-        // اگر در مرورگر هستی، می‌تونی در صفحه نمایش بدی
-        displayInPage(jsonString);
+        // ساختن جدول
+        let html = '<table border="1" style="border-collapse: collapse; width: 100%;">';
+        html += '<tr style="background: #4CAF50; color: white;">';
+        html += '<th>#</th><th>نام</th><th>کلاس</th><th>لینک</th>';
+        html += '</tr>';
+        
+        // حلقه روی کلیدها
+        Object.keys(data).forEach((key, index) => {
+            const item = data[key];
+            html += '<tr>';
+            html += `<td>${index + 1}</td>`;
+            html += `<td>${item.name || 'نامشخص'}</td>`;
+            html += `<td>${item.class || 'نامشخص'}</td>`;
+            html += `<td><a href="${item.link || '#'}" target="_blank">${item.link || '—'}</a></td>`;
+            html += '</tr>';
+        });
+        
+        html += '</table>';
+        
+        // اضافه کردن آمار
+        html += `<p><strong>تعداد کل:</strong> ${Object.keys(data).length} رکورد</p>`;
+        
+        outputDiv.innerHTML = html;
         
         return data;
         
     } catch (error) {
-        console.error('خطا در دریافت JSON:', error);
+        console.error('خطا:', error);
         document.getElementById('output').innerHTML = 
-            `<div style="color: red;">خطا: ${error.message}</div>`;
+            `<p style="color: red;">❌ خطا: ${error.message}</p>`;
     }
 }
 
-// تابع برای نمایش در صفحه
-function displayInPage(jsonString) {
-    const outputDiv = document.getElementById('output');
-    if (outputDiv) {
-        outputDiv.innerHTML = `
-            <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; 
-                         overflow: auto; max-height: 500px;">
-                ${jsonString}
-            </pre>
-        `;
-    }
-}
+// استفاده با URL دلخواه
+const myUrl = 'https://raw.githubusercontent.com/seyedvahidtaheri/vahidtaheri.github.io/refs/heads/main/classes.json';
+fetchAndDisplayMyJSON(myUrl);
 
-// استفاده از تابع
-const jsonUrl = 'https://raw.githubusercontent.com/seyedvahidtaheri/vahidtaheri.github.io/refs/heads/main/classes.json';
-fetchAndDisplayJSON(jsonUrl);
-</script>
-</html>
+
+// تابع برای نمایش داده مستقیم (بدون fetch)
+function displayMyData(data) {
+    // همین کد بالا برای نمایش جدول
+    // ...
+}
